@@ -13,6 +13,17 @@ This document is a work in progress and serves to document the information that 
 
 Due to the nature of development, this document will grow along side the development of a real world application so it may be sometime before it is considered complete. If you find there is information missing that you need assistance with, please feel free to email me, Chris, at spacerockapps@gmail.com and I will gladly assist with any questions you may have.
 
+## Cheat Sheets
+
+[See sails Cheat Sheet](#sailscheatsheet)  
+[See MongoDB Cheat Sheet](#mongodbcheatsheet)  
+[See VS Code Cheat Sheet](#vscodecheatsheet)  
+[See Atom Cheat Sheet](#atomcheatsheet)  
+[See npm Cheat Sheet](#npmcheatsheet)  
+[See ExpressJS Cheat Sheet](#expresscheatsheet)  
+[See Node.js Cheat Sheet](#nodejscheatsheet)
+
+
 ## Perfect Web Stack Technologies
 
 There are a number of technologies that make up the perfect web stack. These are listed below in no particular order. First 3 or 4 things that come to mind as to why I have chosen each one is listed but often the reason are very detailed and will be expended on in future updates to this document.
@@ -136,6 +147,18 @@ In the config/models.js file, update the "migrate" property. You should be able 
 1. In the config/connections.js file, update the someMongodbServer properties.
 2. In the config/env/development.js file, update the "models" option and set the "connection" property to: "someMongodbServer"
 
+#### Sample Settings
+```javascript
+someMongodbServer: {
+    adapter: 'sails-mongo',
+    host: '127.0.0.1',
+    port: 27017,
+    user: 'coolusername',
+    password: 'coolpassword',
+    database: 'cooldatabasename'
+  },
+```
+
 ### Generate a REST API controller and model
 ```javascript
 sails generate api coolentityname
@@ -180,7 +203,7 @@ Top open a side by side panel showing the HTML generated for the Markdown file y
 
 Please refer to the Atom website for detailed information on their Text Editor: https://atom.io/
 
-## <a name="mongodbcodecheatsheet"></a>MongoDB Cheat Sheet
+## <a name="mongodbcheatsheet"></a>MongoDB Cheat Sheet
 
 ### Start the MongoDB server
 ```javascript
@@ -208,6 +231,7 @@ db.coolcollectionname.insert( { coolpropertyname: "I am a cool property" } )
 ```
 
 ## Create a database user
+Make sure you are using the correct database else the user will be allocated to a "test" database.
 ```javascript
 db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWrite", db: "cooldatabasename"}]})
 ```
@@ -235,6 +259,29 @@ Even though we created the new sails API project using the --no-frontend switch,
   }
 ```
 This should get rid of the error when you lift the sails again.
+
+### Lifting sails fails with the error: unknown adaptor, "sails-mongo"
+
+This is most likely due to you trying to lift a project from a cloned Git project or if you just simply have not installed the sails-mongo npm package. Most often this package is installed globally so some Git cloned projects wont have the package.
+
+Install this package globally by using the following command.
+
+```javascript
+npm install sails-mongo -g
+```
+
+Alternatively install the package locally by using the following command.
+```javascript
+npm install sails-mongo --save
+```
+
+### Installing the sails-mongo package fails on Windows
+
+If you review the error logs and see reference to something like: "Can't find Python executable", then you will most likely just need to install Python for Windows. Make sure you setup the correct Environment Path variables. This should be an option in the installer but you can always do it manually.
+
+Also, make sure that you install Python version 2.7.11 and not 3.5.1 as gyp does not support Python version 3.5.1
+
+If you are still having hassles, it could be due to the fact that you don't have the necessary Windows DK's installed. Review the errors and install what is required.
 
 ## Utilities and Resources
 
