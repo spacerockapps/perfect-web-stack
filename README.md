@@ -6,10 +6,10 @@ While the description of the “perfect web stack” above may annoy many develo
 
 With close to 15 years’ application development experience in both the corporate and start-up worlds, I have had the good fortune of being exposed to pretty much every single web technology there is. This exposure varies from full-blown enterprise solutions through to many hundreds of test projects as I have explored this ever-changing but wonderful world of web development.
 
-The “perfect web stack” is, in my humble opinion, the perfect combination of web technologies that currently exists for me and I strongly believe that it could become the best web stack for your next web development project. 
+The “perfect web stack” is, in my humble opinion, the perfect combination of web technologies that currently exists for me and I strongly believe that it could become the best web stack for your next web development project.
 
 ## Important Notes
-This document is a work in progress and serves to document the information that has been floating around in my head over the years. In an effort to share my findings and create a reference point for our future projects I am building out this repo with a step by step guide of how I approach web application development. This is being done in parallel to an exciting new start-up I am currently developing. 
+This document is a work in progress and serves to document the information that has been floating around in my head over the years. In an effort to share my findings and create a reference point for our future projects I am building out this repo with a step by step guide of how I approach web application development. This is being done in parallel to an exciting new start-up I am currently developing.
 
 Due to the nature of development, this document will grow along side the development of a real world application so it may be sometime before it is considered complete. If you find there is information missing that you need assistance with, please feel free to email me, Chris, at spacerockapps@gmail.com and I will gladly assist with any questions you may have.
 
@@ -17,7 +17,7 @@ Due to the nature of development, this document will grow along side the develop
 
 There are a number of technologies that make up the perfect web stack. These are listed below in no particular order. First 3 or 4 things that come to mind as to why I have chosen each one is listed but often the reason are very detailed and will be expended on in future updates to this document.
 
-*Note: Development environment platform options are excluded form the perfect web stack as no matter what your preference is between Windows, Mac or Ubuntu the technologies can be used in developing web applications on any platform.* 
+*Note: Development environment platform options are excluded form the perfect web stack as no matter what your preference is between Windows, Mac or Ubuntu the technologies can be used in developing web applications on any platform.*
 
 ### Web API
 **sails**: Rapid prototyping, intuitive libraries, write less API plumbing code, extensible and customizable.  
@@ -64,7 +64,7 @@ Most web application require a core setup of features. Once these core features 
 
 * Scalable and Flexible application architecture.
 * Secure access through forms and token based authentication mechanisms.
-* True separation of concerns with API's and "MVC" design patterns. 
+* True separation of concerns with API's and "MVC" design patterns.
 * Isomorphic applications with JavaScript everywhere.
 * Hacker-proof front-ends and API's using best of breed coding standards.
 * Validation methods ensuring data integrity on the client and server.
@@ -74,7 +74,7 @@ We I talk about "Getting Setup-to-go" what I mean is getting your project to the
 ## Getting Started with the Perfect Web Stack
 
  To guide you through the process of getting started with the perfect web stack I will be documenting my process while I build out an application which has the following core set of requirements. Now obviously all projects are different, but this one I am building requires the use of all the components that make up the perfect web stack. Below I have listed some of the requirements I need to meet. Feel free to cherry pick what you need.
- 
+
  * Build a RESTfull API to be consumed by internal and external services including the website.
  * Build a custom authentication database.
  * Secure the API using web tokens.
@@ -104,11 +104,16 @@ For further details, [see the MongoDB Cheat Sheet](#mongodbcheatsheet)
 ## Web API Setup using sails
 
 1. Configure the API to use the MongoDB Server.
-2. Create a model and controller for users. 
+2. Create a simple model and controller for users.
 3. Add attributes to the user model specifying type and if required.
-3. In Postman, create CRUD collection for the "users" collection.
+4. In Postman, create CRUD collection for the "users" collection.
+5. Test that all CRUD operations are working
 
 For further details, [see the sails Cheat Sheet](#sailscheatsheet)
+
+### User Authentication
+
+1. Install the bcrypt npm package
 
 ## <a name="sailscheatsheet"></a>sails Cheat Sheet
 
@@ -121,6 +126,11 @@ sails coolprojectname --no-linker --no-frontend
 ```javascript
 sails lift
 ```
+
+### Configure the Sails Migrate setting
+
+Whenever you lift a Sails application Sails needs to know how to handle the data migration if there have been any schema changes. Without configuring your preferred option, Sails will prompt you with this question. I find this rather annoying so I prefer to set this once and then change it in code if I want to do anything different. My go to option for migrate is: "alter".
+In the config/models.js file, update the "migrate" property. You should be able to just uncomment the line that is already there.
 
 ### Configure sails to use MongoDB
 1. In the config/connections.js file, update the someMongodbServer properties.
@@ -162,6 +172,14 @@ https://code.visualstudio.com/download
 
 Please refer to the Visual Studio Code website for detailed information on their Text Editor: https://www.visualstudio.com/en-us/products/code-vs.aspx
 
+## <a name="atomcheatsheet"></a>Atom Cheat Sheet
+
+### Preview Markdown as HTML
+Top open a side by side panel showing the HTML generated for the Markdown file you are editing, use the following keyboard shortcut while you have the Markdown file open.
+`ctrl-shift-m`
+
+Please refer to the Atom website for detailed information on their Text Editor: https://atom.io/
+
 ## <a name="mongodbcodecheatsheet"></a>MongoDB Cheat Sheet
 
 ### Start the MongoDB server
@@ -191,7 +209,7 @@ db.coolcollectionname.insert( { coolpropertyname: "I am a cool property" } )
 
 ## Create a database user
 ```javascript
-db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWrite"}]})
+db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWrite", db: "cooldatabasename"}]})
 ```
 
 Please refer to the Visual Studio Code website for detailed information on their Text Editor: https://www.mongodb.org/
@@ -200,20 +218,28 @@ Please refer to the Visual Studio Code website for detailed information on their
 
 No matter how many times I have built out web applications whether using new methodologies or tried and tested ones, there is always some unexpected issue. In this section I will attempt to highlight any issues I experience during this build and hopefully address these with workable solutions.
 
+### Sails lift command fails with the "pathTo is not defined" error
+
+This normally happens if you are trying to lift a project you have cloned from Github. You see you need to ensure that all local npm modules have been installed before tring to lift the project. So to get those local packed installed for the project, from the project root run the command below.
+
+```javascript
+npm install
+```
+
 ### Lifting sails works but there is an error logged
 
-Even though we created the new sails API project using the --no-frontend switch, for some reason the auto generated config/routes.js file contains a homepage route. Now, unless you want a homepage for your API, which I strongly recommend you don't have, open this file and comments out the following code. 
+Even though we created the new sails API project using the --no-frontend switch, for some reason the auto generated config/routes.js file contains a homepage route. Now, unless you want a homepage for your API, which I strongly recommend you don't have, open this file and comments out the following code.
 ```javascript
 '/': {
     view: 'homepage'
   }
-``` 
+```
 This should get rid of the error when you lift the sails again.
 
 ## Utilities and Resources
 
 * REST Client for working with Web API: http://www.getpostman.com/
-* Code window with tabs (for Windows): https://sourceforge.net/projects/console/files/ 
+* Code window with tabs (for Windows): https://sourceforge.net/projects/console/files/
 
 ## Disclaimer
 
