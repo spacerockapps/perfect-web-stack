@@ -62,6 +62,10 @@ Website: https://www.digitalocean.com/
 **Visual Studio Code**: Lightweight, GitHub integration, code highlighting, search capabilities  
 Website: https://www.visualstudio.com/en-us/products/code-vs.aspx
 
+### API Testing
+**Postman**: Cloud based, flexible and reliable  
+Website: https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
+
 ## Cherry Picking and Getting Setup-to-go
 
 While not all web development projects are created equally, their requirements are often very similar. The goal with the perfect web stack is to have everything we need to carry out most web development projects. Once we have everything we need, we can "Cherry Pick" components and build out our project with a big smile on our face knowing that we are building on a solid and proven foundation. Below are some examples of the type of web projects where you will find the perfect web stack has everything you need to build with confidence.
@@ -107,24 +111,33 @@ We I talk about "Getting Setup-to-go" what I mean is getting your project to the
 ## Database setup using MongoDB
 
 1. Create a MongoDB database.
-2. Create a users collection.
-3. Create a database user with read and write access.
+2. Create a database user with read and write access.
 
 For further details, [see the MongoDB Cheat Sheet](#mongodbcheatsheet)
 
 ## Web API Setup using sails
 
 1. Configure the API to use the MongoDB Server.
-2. Create a simple model and controller for users.
-3. Add attributes to the user model specifying type and if required.
-4. In Postman, create CRUD collection for the "users" collection.
-5. Test that all CRUD operations are working
+2. Create a simple model and controller for a sample entity.
+3. Add attributes to the sample model specifying type and if required.
+4. In Postman, create CRUD collection for the "sample" collection.
+5. Test that all CRUD operations are working.
+6. Add an "Auth" controller with an "index" function for logging in.
 
 For further details, [see the sails Cheat Sheet](#sailscheatsheet)
 
 ### User Authentication
 
-1. Install the bcrypt npm package
+1. Install the bcrypt npm package.
+2. Install the jsonwebtoken package.
+3. Generate a "user" API.
+4. Update the "user" model to accommodate password encryption and comparison
+5. In Postman, create CRUD collections for the "user".
+6. Create the jwToken service.
+7. Create the isAuthorized policy.
+8. Update the "policies" configuration to secure access to the "sample" API.
+9. Update the "sample" tests in Postman with the Bearer Authentication header.
+10. Test logging in and accessing the "sample" API.
 
 ## <a name="sailscheatsheet"></a>sails Cheat Sheet
 
