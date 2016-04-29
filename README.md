@@ -126,7 +126,7 @@ For further details, [see the MongoDB Cheat Sheet](#mongodbcheatsheet)
 
 For further details, [see the sails Cheat Sheet](#sailscheatsheet)
 
-### User Authentication
+### User Authentication - Server
 
 1. Install the bcrypt npm package.
 2. Install the jsonwebtoken package.
@@ -138,6 +138,48 @@ For further details, [see the sails Cheat Sheet](#sailscheatsheet)
 8. Update the "policies" configuration to secure access to the "sample" API.
 9. Update the "sample" tests in Postman with the Bearer Authentication header.
 10. Test logging in and accessing the "sample" API.
+
+### Web Client Setup using express
+
+1. Install the ejs package.
+2. Create a config file and configure API and Server settings.
+3. Add a public views directory.
+4. Install the express-ejs-layouts package.
+5. Install the body-parser package.
+6. Install the express-session package.
+7. Install the cookie-parser package.
+8. Install the node-rest-client package.
+8. Create the appServer file and configure express app.
+9. Create index and layout views and configure layout body.
+10. Test webserver.
+
+### Include framework and custom libraries
+
+1. Download and include into the layout the AngularJS library.
+2. Download and include into the layout the Bootstrap library.
+3. Create a custom CSS file and include into layout.
+
+### Initial AngularJS setup
+
+1.  Create a folder called app in the public directory.
+2. Create an appClient file and update to include an appClient module.
+3. Include the app directive into the body tag of the layout page.
+
+### User Authentication - Client
+
+1. Create a Registration screen.
+2. Create a Login screen.
+3. Create get functions for the login and register screens.
+4. Create a security directory into the client app.
+5. Create a login and register controller.
+6. Create a services directory and add the Sails Rest and Token services.
+7. Include all new script files.
+8. Inject the login and register services into the appClient module.
+9. Configure the login form with the LoginCtrl.
+10. Include all required 3rd party angular libraries and inject.
+11. Add a Post method for /login in the appServer.
+12. Configure appServer for use with passport.
+13. Enable CORS for origin and headers.
 
 ## <a name="sailscheatsheet"></a>sails Cheat Sheet
 
