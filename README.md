@@ -321,21 +321,43 @@ This normally happens if you are trying to lift a project you have cloned from G
 npm install
 ```
 
-### Lifting sails works but there is an error logged
+### Lifting sails works but there is an error logged about a homepage route
 
 Seeing an error similar to the one below?
 
 ```shell
-info: Could not find module: ejs in path: YOURPATHTO\node_modules
 error: Ignoring attempt to bind route (`/`) to unknown view: `homepage`
 ```
 
-Even though we created the new sails API project using the --no-frontend switch, for some reason the auto generated config/routes.js file contains a homepage route. Now, unless you want a homepage for your API, which I strongly recommend you don't have, open this file and comments out the following code.
+Even though we created the new sails API project using the --no-frontend switch, for some reason the auto generated config/routes.js file contains a homepage route. Now, unless you want a homepage for your API, which I strongly recommend you don't have, open this file and comment out the following code.
 ```javascript
 '/': {
     view: 'homepage'
   }
 ```
+This should get rid of the error when you lift the sails again.
+
+### Lifting sails works but there is an error logged about a ejs
+
+Seeing an error similar to the one below?
+
+```shell
+info: Could not find module: ejs in path: YOURPATHTO\node_modules
+```
+
+Even though we created the new sails API project using the --no-frontend switch, for some reason the auto generated config/views.js file contains configuration to use layout templates and ejs. Open this file and change the following line
+```javascript
+  engine: 'ejs',
+```
+to
+```javascript
+ engine: {ext: 'null', fn: function(){}},
+```
+and disable the layout configuration
+```javascript
+   layout: false,
+```
+
 This should get rid of the error when you lift the sails again.
 
 ### Lifting sails fails with the error: unknown adaptor, "sails-mongo"
