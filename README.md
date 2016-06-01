@@ -219,6 +219,22 @@ someMongodbServer: {
 sails generate api coolentityname
 ```
 
+#### Sample model configuration
+```javascript
+module.exports = {
+  attributes: {
+    firstName: {
+      type: 'string',
+      required: true
+    },
+    lastName: {
+      type: 'string',
+      required: true
+    }
+  }
+};
+```
+
 Please refer to the sails website for detailed information on their framework. http://sailsjs.org
 
 ## <a name="expresscheatsheet"></a>Express Cheat Sheet
