@@ -323,6 +323,13 @@ npm install
 
 ### Lifting sails works but there is an error logged
 
+Seeing an error similar to the one below?
+
+```shell
+info: Could not find module: ejs in path: YOURPATHTO\node_modules
+error: Ignoring attempt to bind route (`/`) to unknown view: `homepage`
+```
+
 Even though we created the new sails API project using the --no-frontend switch, for some reason the auto generated config/routes.js file contains a homepage route. Now, unless you want a homepage for your API, which I strongly recommend you don't have, open this file and comments out the following code.
 ```javascript
 '/': {
