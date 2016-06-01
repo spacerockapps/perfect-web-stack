@@ -185,7 +185,7 @@ For further details, [see the sails Cheat Sheet](#sailscheatsheet)
 
 ### Create a new sails project
 ```javascript
-sails coolprojectname --no-linker --no-frontend
+sails new coolprojectname --no-linker --no-frontend
 ```
 
 ### Start the sails application
