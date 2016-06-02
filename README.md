@@ -235,6 +235,20 @@ module.exports = {
 };
 ```
 
+### To much data being returned in Get requests
+
+By default, when using sails rest blueprints, when you perform a Get request on an API that has model or collection attributes, sails returns not only the model you are requesting, but also all of the referenced data. Sometimes you will need this, but most times it is just bloat. To be more specific when performing gets, append the "populate" parameter, like so:
+
+```shell
+http://localhost:1337/yourcoolobject?populate=
+```
+
+Making populate equal to nothing ensures that only the entity you are requesting is returned. If you want the details of any referenced models or collections set populate equal to the name of the attribute you want to include, like so:
+
+```shell
+http://localhost:1337/yourcoolobject?populate=yourcoolreferencedmodel
+```
+
 Please refer to the sails website for detailed information on their framework. http://sailsjs.org
 
 ## <a name="expresscheatsheet"></a>Express Cheat Sheet
