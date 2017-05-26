@@ -310,18 +310,18 @@ use cooldatabasename
 show collections
 ```
 
-## Insert a new document
+### Insert a new document
 ```javascript
 db.coolcollectionname.insert( { coolpropertyname: "I am a cool property" } )
 ```
 
-## Create a database user
+### Create a database user
 Make sure you are using the correct database else the user will be allocated to a "test" database.
 ```javascript
 db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWrite", db: "cooldatabasename"}]})
 ```
 
-## Create Backup of your MongoDb Database
+### Create Backup of your MongoDb Database
 ```javascript
 mongodump --host 127.0.0.1 --port 1234 --db cooldatabasename --out /opt/backup/cooldatabasename-backup2017-05-15
 ```
