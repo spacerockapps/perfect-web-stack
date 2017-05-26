@@ -321,6 +321,11 @@ Make sure you are using the correct database else the user will be allocated to 
 db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWrite", db: "cooldatabasename"}]})
 ```
 
+## Create Backup of your MongoDb Database
+```javascript
+mongodump --host 127.0.0.1 --port 1234 --db cooldatabasename --out /opt/backup/cooldatabasename-backup2017-05-15
+```
+
 Please refer to the Visual Studio Code website for detailed information on their Text Editor: https://www.mongodb.org/
 
 ## Known Exceptions and Gotchas
