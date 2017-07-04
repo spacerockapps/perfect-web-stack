@@ -326,6 +326,11 @@ db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWr
 mongodump --host 127.0.0.1 --port 1234 --db cooldatabasename --out /opt/backup/cooldatabasename-backup2017-05-15
 ```
 
+### Restore the Backup of your MongoDb Database
+```javascript
+mongorestore --db /opt/backup/cooldatabasename-backup2017-05-15 --drop cooldatabasename
+```
+
 Please refer to the Visual Studio Code website for detailed information on their Text Editor: https://www.mongodb.org/
 
 ## Known Exceptions and Gotchas
