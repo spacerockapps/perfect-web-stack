@@ -328,7 +328,7 @@ mongodump --host 127.0.0.1 --port 1234 --db cooldatabasename --out /opt/backup/c
 
 ### Restore the Backup of your MongoDb Database
 ```javascript
-mongorestore --db /opt/backup/cooldatabasename-backup2017-05-15 --drop cooldatabasename
+mongorestore --db cooldatabasename /opt/backup/cooldatabasename-backup2017-05-15/cooldatabasename --port 1234
 ```
 
 Please refer to the Visual Studio Code website for detailed information on their Text Editor: https://www.mongodb.org/
