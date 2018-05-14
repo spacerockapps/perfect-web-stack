@@ -326,6 +326,11 @@ db.createUser({user: "coolusername", pwd: "coolpassword", roles: [{role: "readWr
 mongodump --host 127.0.0.1 --port 1234 --db cooldatabasename --out /opt/backup/cooldatabasename-backup2017-05-15
 ```
 
+### Create Backup of your Azure Cosmos DB MongoDb Database
+```javascript
+mongodump --host cool-database-name.documents.azure.com --username cool-username --port 1234 --ssl --sslAllowInvalidCertificates --out "C:\backup\path"
+```
+
 ### Restore the Backup of your MongoDb Database
 ```javascript
 mongorestore --db cooldatabasename /opt/backup/cooldatabasename-backup2017-05-15/cooldatabasename --port 1234
